@@ -15,7 +15,7 @@ function I = I(i,K_i,z,f)
 
     for j =1:L     
 
-        I =I+ conj(K_i(j))*G(k,x_l(j,:),z)*G(k,x_l(i,:),z);
+        I =I+ conj(K_i(j))*G(k,x_l(j,:)',z)*G(k,x_l(i,:)',z);
 
     end
    
