@@ -86,9 +86,11 @@ for i=1:Nx
 
         z = [xmin+dx*i;ymin+dy*j];
 
-        n=32;
+%         n=32;
+% 
+%         img(j,i) = img(j,i)+I(n,K_freq(n,:,I_fmax),z,f(I_fmax));
 
-        img(j,i) = img(j,i)+I(n,K_freq(n,:,I_fmax),z,f(I_fmax));
+        img(j,i) = retro(V(:,2),z,f(I_fmax));
 
     end 
 end
