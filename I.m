@@ -7,14 +7,19 @@ function I = I(i,K_i,z,f)
     x_l = [zeros(L,2)];
     c_0=1.5;
 
-    k= 2*pi*f/c_0;
-
     for k=1:L
         x_l(k,2)=(k-L/2)*delta_z;
     end
 
-    for j =1:L     
+    k= 2*pi*f/c_0;
 
+    for j =1:L   
+        "test"
+        z
+        x_l(i,:)'
+        x_l(j,:)'
+        k
+        K_i(j)
         I =I+ conj(K_i(j))*G(k,x_l(j,:)',z)*G(k,x_l(i,:)',z);
 
     end

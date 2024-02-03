@@ -1,4 +1,5 @@
 clear all 
+close all 
 
 f_echantillonnage=50;  % fréquence d'échantillonage des signaux en MHz
 
@@ -66,27 +67,33 @@ dy = (ymax-ymin)/Ny;
 
 img = zeros(Ny,Nx);
 
-% [U,S,V]=svd(K(:,:,I_fmax));
+% for f_i=1:length(f)
+%     
+%     [U,S,V]=svd(K(:,:,f_i));
+%     scatter(f(f_i),diag(S),"filled","blue")
+%     grid on 
+%     hold on
+%     
+% end
+% xlabel("Fréquence (MHz)")
+% ylabel("Valeurs singulières")
+% figure
 
-for n =1:L
-    for i=1:Nx
-        for j=1:Ny
-    
-            z = [xmin+dx*i;ymin+dy*j];
-    
-            n=1;
-    
-    %         img(j,i)=0;
-    %         for f_i=10:20
-    %             img(j,i) = img(j,i)+ I(n,K_freq(n,:,f_i),z,f(f_i));
-    %         end
-    
-            img(j,i) = img(j,i)+ I(n,K_freq(n,:,I_fmax),z,f(I_fmax));
-    
-        end 
-    end
+[U,S,V]=svd(K(:,:,I_fmax));
+
+for i=1:Nx
+    for j=1:Ny
+
+        z = [xmin+dx*i;ymin+dy*j];
+
+        n=32;
+
+        img(j,i) = img(j,i)+I(n,K_freq(n,:,I_fmax),z,f(I_fmax));
+
+    end 
 end
 
 
-image(real(img),'CDataMapping','scaled')
+
+image(abs(img),'CDataMapping','scaled')
 colorbar 
